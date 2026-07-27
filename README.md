@@ -1,1 +1,1 @@
-# sa57
+# Cultura Organizacional SKECHERS

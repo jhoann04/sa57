@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Evaluación Cultura Organizacional | SKECHERS</title>
+<title>Evaluación Cultura Organizacional | SKECHERS 4.0</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
 <style>
 /* ============================================
@@ -44,26 +50,17 @@ body{
   overflow-x:hidden;
 }
 
-/* Textura de fondo tipo carriles de pista */
 .pista{
   position:fixed;
   inset:0;
   pointer-events:none;
   background-image:repeating-linear-gradient(
-    100deg,
-    transparent 0px,
-    transparent 120px,
-    rgba(255,255,255,.035) 120px,
-    rgba(255,255,255,.035) 124px
+    100deg, transparent 0px, transparent 120px,
+    rgba(255,255,255,.035) 120px, rgba(255,255,255,.035) 124px
   );
 }
 
-section{
-  width:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
+section{width:100%; display:flex; justify-content:center; align-items:center;}
 
 /* ============================================
    TARJETAS
@@ -85,373 +82,176 @@ section{
   to{opacity:1; transform:translateY(0);}
 }
 
-.marca{
-  display:flex;
-  justify-content:center;
-  margin-bottom:18px;
-}
-
-.marca-icono{
-  width:64px;
-  height:64px;
-  color:var(--gold-400);
-}
+.marca{display:flex; justify-content:center; margin-bottom:18px;}
+.marca-icono{width:64px; height:64px; color:var(--gold-400);}
 
 .eyebrow{
-  display:block;
-  text-align:center;
-  font-family:var(--font-mono);
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  font-size:12px;
-  color:var(--gold-400);
-  margin-bottom:10px;
+  display:block; text-align:center; font-family:var(--font-mono);
+  letter-spacing:.14em; text-transform:uppercase; font-size:12px;
+  color:var(--gold-400); margin-bottom:10px;
 }
 
 h1{
-  font-family:var(--font-display);
-  text-align:center;
-  font-size:34px;
-  font-weight:700;
-  margin-bottom:6px;
-  letter-spacing:-.01em;
+  font-family:var(--font-display); text-align:center;
+  font-size:34px; font-weight:700; margin-bottom:6px; letter-spacing:-.01em;
 }
 
 h2{
-  font-family:var(--font-display);
-  text-align:center;
-  font-weight:600;
-  color:var(--fog-300);
-  margin-bottom:20px;
+  font-family:var(--font-display); text-align:center;
+  font-weight:600; color:var(--fog-300); margin-bottom:20px;
 }
 
 .descripcion{
-  text-align:center;
-  font-size:15.5px;
-  line-height:1.55;
-  color:var(--fog-300);
-  max-width:520px;
-  margin:0 auto 26px;
+  text-align:center; font-size:15.5px; line-height:1.55;
+  color:var(--fog-300); max-width:520px; margin:0 auto 26px;
 }
 
-.lista{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-bottom:28px;
-}
+.lista{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px;}
 
 .lista div{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-  padding:12px 14px;
-  border-radius:12px;
-  font-size:14.5px;
+  display:flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
+  padding:12px 14px; border-radius:12px; font-size:14.5px;
 }
 
-.check{
-  color:var(--mint-400);
-  font-weight:700;
-}
+.check{color:var(--mint-400); font-weight:700;}
 
 .campo{margin-top:16px;}
-
 .campo label{
-  display:block;
-  font-size:12.5px;
-  color:var(--fog-300);
-  margin-bottom:6px;
-  font-family:var(--font-mono);
+  display:block; font-size:12.5px; color:var(--fog-300);
+  margin-bottom:6px; font-family:var(--font-mono);
 }
 
 input{
-  width:100%;
-  padding:14px 16px;
-  border:1px solid rgba(255,255,255,.16);
-  border-radius:12px;
-  font-size:16px;
-  background:rgba(255,255,255,.92);
-  color:var(--navy-950);
-  font-family:var(--font-body);
+  width:100%; padding:14px 16px; border:1px solid rgba(255,255,255,.16);
+  border-radius:12px; font-size:16px; background:rgba(255,255,255,.92);
+  color:var(--navy-950); font-family:var(--font-body);
 }
 
-input:focus{
-  outline:3px solid var(--blue-500);
-  outline-offset:1px;
-}
+input:focus{outline:3px solid var(--blue-500); outline-offset:1px;}
 
 .nota{
-  text-align:center;
-  font-size:12.5px;
-  color:var(--fog-300);
-  margin-top:14px;
-  font-family:var(--font-mono);
+  text-align:center; font-size:12.5px; color:var(--fog-300);
+  margin-top:14px; font-family:var(--font-mono);
 }
 
 /* ============================================
    BOTONES
    ============================================ */
 .btnPrimario{
-  width:100%;
-  margin-top:22px;
-  padding:16px;
-  font-size:16.5px;
-  font-weight:700;
-  font-family:var(--font-display);
-  border:none;
-  border-radius:14px;
-  background:linear-gradient(135deg, var(--blue-500), #1e4fc4);
-  color:white;
-  cursor:pointer;
-  transition:.25s ease;
+  width:100%; margin-top:14px; padding:16px; font-size:16.5px;
+  font-weight:700; font-family:var(--font-display); border:none;
+  border-radius:14px; background:linear-gradient(135deg, var(--blue-500), #1e4fc4);
+  color:white; cursor:pointer; transition:.25s ease;
 }
-
-.btnPrimario:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 25px rgba(47,111,237,.4);
-}
-
-.btnPrimario:focus-visible{
-  outline:3px solid var(--gold-400);
-  outline-offset:2px;
-}
+.btnPrimario:hover{transform:translateY(-2px); box-shadow:0 10px 25px rgba(47,111,237,.4);}
+.btnPrimario:focus-visible{outline:3px solid var(--gold-400); outline-offset:2px;}
 
 .btnSecundario{
-  width:100%;
-  margin-top:12px;
-  padding:14px;
-  font-size:15px;
-  font-weight:600;
-  font-family:var(--font-display);
-  border:1px solid rgba(255,255,255,.22);
-  border-radius:14px;
-  background:transparent;
-  color:var(--fog-100);
-  cursor:pointer;
-  transition:.25s ease;
+  width:100%; margin-top:12px; padding:14px; font-size:15px;
+  font-weight:600; font-family:var(--font-display); border:1px solid rgba(255,255,255,.2);
+  border-radius:14px; background:rgba(255,255,255,.06); color:var(--fog-100);
+  cursor:pointer; transition:.2s ease;
 }
+.btnSecundario:hover{background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.35);}
 
-.btnSecundario:hover{
-  border-color:var(--gold-400);
-  background:rgba(255,193,7,.08);
+.btnIcono{
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16);
+  color:var(--fog-100); width:40px; height:40px; border-radius:10px;
+  font-size:16px; cursor:pointer; flex-shrink:0;
 }
-
-.btnSecundario:focus-visible{
-  outline:3px solid var(--gold-400);
-  outline-offset:2px;
-}
+.btnIcono:hover{background:rgba(255,255,255,.16);}
 
 /* ============================================
-   TOP EVALUADOS
-   ============================================ */
-.listaRanking{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  margin:24px 0 6px;
-}
-
-.cargandoRanking{
-  text-align:center;
-  color:var(--fog-300);
-  font-size:14.5px;
-  padding:20px 0;
-}
-
-.filaRanking{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:12px;
-  padding:12px 16px;
-}
-
-.filaRanking:nth-child(1){border-color:rgba(255,193,7,.5); background:rgba(255,193,7,.08);}
-.filaRanking:nth-child(2){border-color:rgba(255,255,255,.3);}
-.filaRanking:nth-child(3){border-color:rgba(205,127,50,.5); background:rgba(205,127,50,.08);}
-
-.posicion{
-  width:34px;
-  flex-shrink:0;
-  text-align:center;
-  font-family:var(--font-mono);
-  font-weight:700;
-  font-size:16px;
-}
-
-.nombreRanking{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  font-size:14.5px;
-  font-weight:600;
-}
-
-.nombreRanking small{
-  font-weight:400;
-  font-family:var(--font-mono);
-  color:var(--fog-300);
-  font-size:11.5px;
-}
-
-.porcentajeRanking{
-  font-family:var(--font-mono);
-  font-weight:700;
-  color:var(--mint-400);
-  font-size:16px;
-}
-
-/* ============================================
-   QUIZ HEADER — dorsal de corredor
+   QUIZ HEADER
    ============================================ */
 header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px;
-  margin-bottom:22px;
-  flex-wrap:wrap;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; margin-bottom:18px; flex-wrap:wrap;
 }
 
 .dorsal{
-  position:relative;
-  background:var(--fog-100);
-  color:var(--navy-950);
-  padding:10px 18px;
-  border-radius:10px;
-  font-family:var(--font-mono);
-  font-weight:700;
-  line-height:1;
-  box-shadow:0 6px 14px rgba(0,0,0,.25);
+  position:relative; background:var(--fog-100); color:var(--navy-950);
+  padding:10px 18px; border-radius:10px; font-family:var(--font-mono);
+  font-weight:700; line-height:1; box-shadow:0 6px 14px rgba(0,0,0,.25);
 }
-
 .dorsal::before, .dorsal::after{
-  content:"";
-  position:absolute;
-  top:-5px;
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:var(--navy-950);
-  opacity:.6;
+  content:""; position:absolute; top:-5px; width:9px; height:9px;
+  border-radius:50%; background:var(--navy-950); opacity:.6;
 }
 .dorsal::before{left:8px;}
 .dorsal::after{right:8px;}
-
-.dorsal-label{
-  display:block;
-  font-size:10px;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  opacity:.6;
-  margin-bottom:2px;
-}
-
+.dorsal-label{display:block; font-size:10px; letter-spacing:.1em; text-transform:uppercase; opacity:.6; margin-bottom:2px;}
 #contador{font-size:20px;}
 .dorsal-total{font-size:13px; opacity:.5; margin-left:2px;}
 
 .chip{
-  font-family:var(--font-mono);
-  font-size:12.5px;
-  background:rgba(255,193,7,.15);
-  color:var(--gold-400);
-  border:1px solid rgba(255,193,7,.35);
-  padding:8px 14px;
-  border-radius:999px;
-  white-space:nowrap;
+  font-family:var(--font-mono); font-size:12.5px;
+  background:rgba(255,193,7,.15); color:var(--gold-400);
+  border:1px solid rgba(255,193,7,.35); padding:8px 14px;
+  border-radius:999px; white-space:nowrap;
 }
 
-#cronometro{
-  background:var(--navy-950);
-  color:var(--mint-400);
-  font-family:var(--font-mono);
-  font-weight:700;
-  padding:10px 16px;
-  border-radius:10px;
-  font-size:18px;
-  border:1px solid rgba(0,217,163,.3);
+.chipRacha{
+  background:rgba(255,84,112,.15); color:#ff8fa3; border-color:rgba(255,84,112,.35);
+  animation:pulso .6s ease;
 }
-
-#cronometro.alerta{
-  color:var(--coral-500);
-  border-color:rgba(255,84,112,.4);
-}
+@keyframes pulso{ 0%{transform:scale(1);} 40%{transform:scale(1.15);} 100%{transform:scale(1);} }
 
 /* ============================================
-   BARRA DE PROGRESO — "carril"
+   CARRIL DE PROGRESO + CORREDOR
    ============================================ */
-.pistaProgreso{
-  display:flex;
-  gap:5px;
-  margin-bottom:28px;
-}
-
-.segmento{
-  flex:1;
-  height:8px;
-  border-radius:6px;
-  background:rgba(255,255,255,.14);
-  transition:.3s;
-}
-
+.pistaProgreso{display:flex; gap:5px; margin-bottom:6px;}
+.segmento{flex:1; height:8px; border-radius:6px; background:rgba(255,255,255,.14); transition:.3s;}
 .segmento.correcta{background:var(--mint-400);}
 .segmento.incorrecta{background:var(--coral-500);}
 .segmento.actual{background:var(--gold-400);}
+
+.carrilCorredor{position:relative; height:22px; margin-bottom:14px;}
+#corredor{
+  position:absolute; top:0; left:0; font-size:18px;
+  transform:translateX(-50%); transition:left .4s ease;
+}
+
+/* Timer por pregunta */
+.temporizadorPregunta{
+  width:100%; height:5px; background:rgba(255,255,255,.12);
+  border-radius:6px; overflow:hidden; margin-bottom:22px;
+}
+.barraTiempoRelleno{
+  height:100%; width:100%; background:linear-gradient(90deg, var(--mint-400), var(--gold-400));
+  transform-origin:left; transition:width 1s linear, background-color .3s;
+}
+.barraTiempoRelleno.urgente{background:var(--coral-500);}
 
 /* ============================================
    PREGUNTA / RESPUESTAS
    ============================================ */
 #pregunta{
-  font-family:var(--font-display);
-  font-size:23px;
-  font-weight:600;
-  line-height:1.4;
-  margin-bottom:22px;
+  font-family:var(--font-display); font-size:23px; font-weight:600;
+  line-height:1.4; margin-bottom:22px;
 }
 
 .opcion{
-  display:block;
-  width:100%;
-  text-align:left;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.16);
-  color:var(--fog-100);
-  padding:15px 18px;
-  margin-top:12px;
-  border-radius:12px;
-  cursor:pointer;
-  font-size:15.5px;
-  font-family:var(--font-body);
-  transition:.2s;
+  display:flex; align-items:center; gap:10px;
+  width:100%; text-align:left; background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.16); color:var(--fog-100);
+  padding:15px 18px; margin-top:12px; border-radius:12px;
+  cursor:pointer; font-size:15.5px; font-family:var(--font-body); transition:.2s;
 }
-
-.opcion:hover{
-  border-color:var(--blue-500);
-  background:rgba(47,111,237,.12);
-  transform:translateX(4px);
+.opcion:hover{border-color:var(--blue-500); background:rgba(47,111,237,.12); transform:translateX(4px);}
+.opcion .tecla{
+  font-family:var(--font-mono); font-size:11px; color:var(--fog-300);
+  background:rgba(255,255,255,.1); border-radius:5px; padding:2px 6px; flex-shrink:0;
 }
-
-.opcion.seleccion{
-  border-color:var(--blue-500);
-  background:rgba(47,111,237,.22);
-}
-
-.opcion.correcta{
-  border-color:var(--mint-400);
-  background:rgba(0,217,163,.18);
-}
-
-.opcion.incorrecta{
-  border-color:var(--coral-500);
-  background:rgba(255,84,112,.18);
-}
-
+.opcion.seleccion{border-color:var(--blue-500); background:rgba(47,111,237,.22);}
+.opcion.correcta{border-color:var(--mint-400); background:rgba(0,217,163,.18);}
+.opcion.incorrecta{border-color:var(--coral-500); background:rgba(255,84,112,.18); animation:sacudir .3s;}
 .opcion:disabled{cursor:default; transform:none;}
+
+@keyframes sacudir{
+  0%,100%{transform:translateX(0);} 25%{transform:translateX(-5px);} 75%{transform:translateX(5px);}
+}
 
 #respuestaTexto{margin-top:4px;}
 
@@ -459,101 +259,82 @@ header{
    FEEDBACK DIDÁCTICO
    ============================================ */
 .feedback{
-  margin-top:20px;
-  padding:16px 18px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,.16);
-  background:rgba(255,255,255,.05);
+  margin-top:20px; padding:16px 18px; border-radius:14px;
+  border:1px solid rgba(255,255,255,.16); background:rgba(255,255,255,.05);
   animation:aparecer .35s ease;
 }
-
 .feedback.ok{border-color:rgba(0,217,163,.4); background:rgba(0,217,163,.1);}
 .feedback.mal{border-color:rgba(255,84,112,.4); background:rgba(255,84,112,.1);}
-
-#feedbackTitulo{
-  font-family:var(--font-display);
-  font-weight:700;
-  margin-bottom:6px;
-  font-size:15.5px;
-}
-
-#feedbackTexto{
-  font-size:14.5px;
-  line-height:1.5;
-  color:var(--fog-300);
-}
+#feedbackTitulo{font-family:var(--font-display); font-weight:700; margin-bottom:6px; font-size:15.5px;}
+#feedbackTexto{font-size:14.5px; line-height:1.5; color:var(--fog-300);}
 
 /* ============================================
    RESULTADOS
    ============================================ */
-.trofeo{
-  width:76px;
-  height:76px;
-  display:block;
-  margin:0 auto 18px;
-  color:var(--gold-400);
-}
-
+.trofeo{width:76px; height:76px; display:block; margin:0 auto 18px; color:var(--gold-400);}
 #porcentaje{
-  font-family:var(--font-display);
-  font-size:76px;
-  font-weight:700;
-  text-align:center;
-  margin:14px 0;
-  color:var(--mint-400);
+  font-family:var(--font-display); font-size:76px; font-weight:700;
+  text-align:center; margin:14px 0; color:var(--mint-400);
 }
-
 #mensaje{color:var(--fog-100); margin-bottom:8px;}
+#detalle{text-align:center; color:var(--fog-300); font-size:14.5px; margin-bottom:24px;}
 
-#detalle{
-  text-align:center;
-  color:var(--fog-300);
-  font-size:14.5px;
-  margin-bottom:24px;
+.desglose{display:flex; flex-direction:column; gap:12px; margin-bottom:22px;}
+.fila-desglose{display:flex; align-items:center; gap:12px; font-size:13.5px;}
+.fila-desglose .nombreCat{width:170px; flex-shrink:0; color:var(--fog-300); font-family:var(--font-mono); font-size:12px;}
+.fila-desglose .track{flex:1; height:8px; background:rgba(255,255,255,.12); border-radius:6px; overflow:hidden;}
+.fila-desglose .relleno{height:100%; background:linear-gradient(90deg, var(--blue-500), var(--mint-400)); border-radius:6px;}
+.fila-desglose .valorCat{width:38px; text-align:right; font-family:var(--font-mono); color:var(--fog-300);}
+
+.insignias{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:6px;}
+.insignia{
+  font-family:var(--font-mono); font-size:12px; background:rgba(255,193,7,.12);
+  color:var(--gold-400); border:1px solid rgba(255,193,7,.3);
+  padding:8px 12px; border-radius:999px;
 }
 
-.desglose{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  margin-bottom:8px;
-}
+/* ============================================
+   RANKING
+   ============================================ */
+.cardRanking{max-width:640px;}
 
-.fila-desglose{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-size:13.5px;
-}
+.buscarRanking{margin-bottom:20px;}
 
-.fila-desglose .nombreCat{
-  width:170px;
-  flex-shrink:0;
-  color:var(--fog-300);
-  font-family:var(--font-mono);
-  font-size:12px;
-}
+.listaRanking{display:flex; flex-direction:column; gap:10px; margin-bottom:8px; max-height:420px; overflow-y:auto;}
 
-.fila-desglose .track{
-  flex:1;
-  height:8px;
-  background:rgba(255,255,255,.12);
-  border-radius:6px;
-  overflow:hidden;
-}
+.cargandoRanking{text-align:center; color:var(--fog-300); padding:20px 0;}
 
-.fila-desglose .relleno{
-  height:100%;
-  background:linear-gradient(90deg, var(--blue-500), var(--mint-400));
-  border-radius:6px;
+.filaRanking{
+  border:1px solid rgba(255,255,255,.14); border-radius:14px;
+  background:rgba(255,255,255,.05); overflow:hidden; transition:.2s;
 }
+.filaRanking.top1{border-color:rgba(255,193,7,.5); background:rgba(255,193,7,.08);}
+.filaRanking.top2{border-color:rgba(196,196,196,.4); background:rgba(196,196,196,.06);}
+.filaRanking.top3{border-color:rgba(205,127,50,.4); background:rgba(205,127,50,.08);}
 
-.fila-desglose .valorCat{
-  width:38px;
-  text-align:right;
-  font-family:var(--font-mono);
-  color:var(--fog-300);
+.filaRankingResumen{
+  display:flex; align-items:center; gap:14px; padding:14px 16px; cursor:pointer;
 }
+.posicion{
+  font-family:var(--font-display); font-weight:700; font-size:18px;
+  width:34px; text-align:center; flex-shrink:0;
+}
+.infoRanking{flex:1; min-width:0;}
+.infoRanking .nombreRanking{font-weight:600; font-size:14.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.infoRanking .cmRanking{font-family:var(--font-mono); font-size:11.5px; color:var(--fog-300);}
+.pctRanking{font-family:var(--font-display); font-weight:700; font-size:19px; color:var(--mint-400); flex-shrink:0;}
+.flechaRanking{color:var(--fog-300); font-size:12px; transition:.2s; flex-shrink:0;}
+.filaRanking.abierta .flechaRanking{transform:rotate(180deg);}
+
+.detalleRanking{
+  max-height:0; overflow:hidden; transition:max-height .3s ease;
+  padding:0 16px; border-top:1px solid transparent;
+}
+.filaRanking.abierta .detalleRanking{
+  max-height:260px; padding:14px 16px 16px; border-top-color:rgba(255,255,255,.1);
+}
+.detalleRanking .fechaRanking{font-family:var(--font-mono); font-size:11.5px; color:var(--fog-300); margin-bottom:10px;}
+.detalleRanking .fila-desglose .nombreCat{width:150px; font-size:11px;}
 
 /* ============================================
    RESPONSIVE
@@ -564,6 +345,7 @@ header{
   h1{font-size:26px;}
   #porcentaje{font-size:58px;}
   header{gap:10px;}
+  .infoRanking .nombreRanking{max-width:140px;}
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -571,12 +353,6 @@ header{
 }
 
 </style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
@@ -593,13 +369,13 @@ header{
       </svg>
     </div>
 
-    <span class="eyebrow">Programa de inducción</span>
+    <span class="eyebrow">Programa de inducción · v4.0</span>
     <h1>Evaluación de Cultura Organizacional</h1>
     <h2>SKECHERS</h2>
 
     <p class="descripcion">
-      Esta evaluación mide tus conocimientos sobre 8 pilares de nuestra cultura.
-      Responde con calma: después de cada pregunta te explicamos la respuesta correcta.
+      16 preguntas sobre los 8 pilares de nuestra cultura, elegidas al azar en cada intento.
+      Después de cada respuesta te explicamos por qué es correcta o no.
     </p>
 
     <div class="lista">
@@ -625,7 +401,8 @@ header{
 
     <button id="btnComenzar" class="btnPrimario">🚀 Comenzar evaluación</button>
     <button id="btnVerRankingInicio" class="btnSecundario" type="button">🏅 Ver top evaluados</button>
-    <p class="nota">12 preguntas · tiempo total 10:00</p>
+
+    <p class="nota">16 preguntas · 2 de cada pilar · 25s por pregunta</p>
 
   </div>
 </section>
@@ -637,13 +414,22 @@ header{
     <header>
       <div class="dorsal">
         <span class="dorsal-label">Pregunta</span>
-        <span id="contador">01<span class="dorsal-total">/12</span></span>
+        <span id="contador">01<span class="dorsal-total">/16</span></span>
       </div>
+
       <span id="categoriaActual" class="chip">Categoría</span>
-      <div id="cronometro">10:00</div>
+
+      <span id="racha" class="chip chipRacha" style="display:none;">🔥 x0</span>
+
+      <button id="btnSonido" class="btnIcono" type="button" title="Silenciar sonido" aria-label="Silenciar sonido">🔊</button>
     </header>
 
     <div class="pistaProgreso" id="barra"></div>
+    <div class="carrilCorredor"><span id="corredor">🏃</span></div>
+
+    <div class="temporizadorPregunta">
+      <div id="barraTiempo" class="barraTiempoRelleno"></div>
+    </div>
 
     <h2 id="pregunta">Pregunta</h2>
 
@@ -655,6 +441,7 @@ header{
     </div>
 
     <button id="btnSiguiente" class="btnPrimario">Comprobar respuesta</button>
+    <p class="nota">Tip: usa las teclas 1-4 para elegir y Enter para continuar</p>
   </div>
 </section>
 
@@ -678,30 +465,39 @@ header{
 
     <div class="desglose" id="desglose"></div>
 
-    <button onclick="location.reload()" class="btnPrimario">Realizar nuevamente</button>
+    <div class="insignias" id="insignias"></div>
+
+    <button id="btnCopiarResultado" class="btnSecundario" type="button">📋 Copiar resultado</button>
     <button id="btnVerRankingResultado" class="btnSecundario" type="button">🏅 Ver top evaluados</button>
+    <button onclick="location.reload()" class="btnPrimario">Realizar nuevamente</button>
   </div>
 </section>
 
-<!-- TOP EVALUADOS -->
+<!-- RANKING -->
 <section id="ranking" style="display:none;">
-  <div class="card">
+  <div class="card cardRanking">
 
     <span class="eyebrow">Tabla de posiciones</span>
     <h1>Top evaluados</h1>
     <p class="descripcion">Los mejores puntajes registrados hasta ahora.</p>
 
+    <input type="text" id="buscarRanking" class="buscarRanking" placeholder="🔍 Buscar por nombre o CM...">
+
     <div id="listaRanking" class="listaRanking">
-      <p class="cargandoRanking">Cargando ranking…</p>
+      <p class="cargandoRanking">Cargando...</p>
     </div>
 
-    <button id="btnVolverInicio" class="btnPrimario">Volver al inicio</button>
+    <button id="btnVolverInicio" class="btnPrimario" type="button">Volver al inicio</button>
   </div>
 </section>
 
 <script>
+// Banco de 24 preguntas: 3 por cada uno de los 8 pilares.
+// Cada evaluación toma 2 preguntas al azar de cada pilar (16 en total),
+// así el orden y la selección cambian cada vez que se realiza.
 const DATA = [
 
+  // ===== MISIÓN =====
   {
     tipo: "opcion",
     categoria: "Misión",
@@ -713,9 +509,65 @@ const DATA = [
       "Fabricar solo ropa"
     ],
     correcta: "Ofrecer productos cómodos, innovadores y de alta calidad",
-    explicacion: "Nuestra misión combina tres pilares: comodidad, innovación y calidad. No se trata solo de precio ni de un único tipo de producto."
+    explicacion: "Nuestra misión combina tres pilares: comodidad, innovación y calidad."
+  },
+  {
+    tipo: "opcion",
+    categoria: "Misión",
+    pregunta: "¿Por qué es importante conocer la misión de la empresa?",
+    opciones: [
+      "Porque guía las decisiones diarias de todos los colaboradores",
+      "Porque es un requisito solo para gerentes",
+      "Porque cambia cada mes",
+      "Porque no tiene relación con el trabajo diario"
+    ],
+    correcta: "Porque guía las decisiones diarias de todos los colaboradores",
+    explicacion: "La misión no es un cartel decorativo: orienta cómo decidimos y actuamos cada día, sin importar el cargo."
+  },
+  {
+    tipo: "texto",
+    categoria: "Misión",
+    pregunta: "Completa: La misión resume la razón de ______ de la empresa.",
+    correcta: "ser",
+    explicacion: "La misión responde a la pregunta \"¿para qué existimos como empresa?\"."
   },
 
+  // ===== VISIÓN =====
+  {
+    tipo: "opcion",
+    categoria: "Visión",
+    pregunta: "¿Qué es la visión de una empresa?",
+    opciones: [
+      "Hacia dónde quiere llegar en el futuro",
+      "El listado de productos actuales",
+      "El organigrama",
+      "El horario de atención"
+    ],
+    correcta: "Hacia dónde quiere llegar en el futuro",
+    explicacion: "Mientras la misión habla del presente, la visión describe la meta a largo plazo que queremos alcanzar."
+  },
+  {
+    tipo: "texto",
+    categoria: "Visión",
+    pregunta: "Completa: La visión describe el futuro _______ que queremos alcanzar.",
+    correcta: "deseado",
+    explicacion: "La visión es una imagen clara y positiva de a dónde queremos llegar como organización."
+  },
+  {
+    tipo: "opcion",
+    categoria: "Visión",
+    pregunta: "La visión de una empresa debe ser, sobre todo:",
+    opciones: [
+      "Inspiradora y clara",
+      "Confusa",
+      "Secreta",
+      "Idéntica a la de la competencia"
+    ],
+    correcta: "Inspiradora y clara",
+    explicacion: "Una visión clara motiva al equipo; si es confusa o secreta, pierde su propósito de guiar a todos hacia la misma meta."
+  },
+
+  // ===== CULTURA ORGANIZACIONAL =====
   {
     tipo: "opcion",
     categoria: "Cultura Organizacional",
@@ -727,17 +579,25 @@ const DATA = [
       "Las vacaciones"
     ],
     correcta: "Los valores, comportamientos y forma de trabajar de la empresa",
-    explicacion: "La cultura es el conjunto de valores y comportamientos compartidos que guían cómo trabajamos, más allá de cualquier cifra o beneficio puntual."
+    explicacion: "La cultura es el conjunto de valores y comportamientos compartidos que guían cómo trabajamos."
   },
-
+  {
+    tipo: "opcion",
+    categoria: "Cultura Organizacional",
+    pregunta: "¿Cuál es un valor importante dentro de Skechers?",
+    opciones: ["Respeto", "Desorden", "Indiferencia", "Competencia desleal"],
+    correcta: "Respeto",
+    explicacion: "El respeto hacia compañeros, clientes y la marca es uno de los valores centrales de nuestra cultura."
+  },
   {
     tipo: "texto",
-    categoria: "Atención al Cliente",
-    pregunta: "Completa: La atención al ________ es responsabilidad de todos.",
-    correcta: "cliente",
-    explicacion: "La atención al cliente no es tarea de un solo departamento: todos en la organización representamos la marca frente a quien compra."
+    categoria: "Cultura Organizacional",
+    pregunta: "Completa: La cultura se construye con el ______ de todos los días.",
+    correcta: "ejemplo",
+    explicacion: "La cultura no se impone con un manual: se construye con el ejemplo diario de cada persona en el equipo."
   },
 
+  // ===== COMPETENCIAS ESENCIALES =====
   {
     tipo: "opcion",
     categoria: "Competencias Esenciales",
@@ -749,17 +609,65 @@ const DATA = [
       "Improvisar siempre"
     ],
     correcta: "Orientación a resultados",
-    explicacion: "La orientación a resultados —trabajar con foco en metas claras— es una de las competencias que se espera de todo el equipo."
+    explicacion: "La orientación a resultados es una de las competencias que se espera de todo el equipo."
   },
-
   {
     tipo: "texto",
-    categoria: "Seguridad",
-    pregunta: "Completa: La seguridad comienza por la __________.",
-    correcta: "prevención",
-    explicacion: "Anticipar riesgos antes de que ocurran es la base de cualquier cultura de seguridad efectiva."
+    categoria: "Competencias Esenciales",
+    pregunta: "Completa: El trabajo en ______ fortalece la organización.",
+    correcta: "equipo",
+    explicacion: "Ninguna meta importante se logra de forma aislada; el trabajo en equipo multiplica los resultados."
+  },
+  {
+    tipo: "opcion",
+    categoria: "Competencias Esenciales",
+    pregunta: "La comunicación efectiva se basa en:",
+    opciones: [
+      "Escuchar y expresar ideas claramente",
+      "Gritar",
+      "Interrumpir",
+      "Hablar únicamente"
+    ],
+    correcta: "Escuchar y expresar ideas claramente",
+    explicacion: "Comunicar bien es un proceso de dos vías: escuchar activamente y expresar ideas con claridad."
   },
 
+  // ===== ATRIBUTOS DE MARCA =====
+  {
+    tipo: "opcion",
+    categoria: "Atributos de Marca",
+    pregunta: "Un atributo de marca es:",
+    opciones: [
+      "Una característica que nos distingue de la competencia",
+      "El precio más bajo posible",
+      "El color de la fachada",
+      "El número de tiendas"
+    ],
+    correcta: "Una característica que nos distingue de la competencia",
+    explicacion: "Los atributos de marca son esas cualidades que hacen que el cliente nos reconozca y nos elija."
+  },
+  {
+    tipo: "texto",
+    categoria: "Atributos de Marca",
+    pregunta: "Completa: La comodidad es uno de los atributos que más valoran nuestros ________.",
+    correcta: "clientes",
+    explicacion: "La comodidad del calzado es uno de los atributos que más asocian los clientes con nuestra marca."
+  },
+  {
+    tipo: "opcion",
+    categoria: "Atributos de Marca",
+    pregunta: "¿Por qué cuidamos los atributos de marca?",
+    opciones: [
+      "Porque construyen la confianza del cliente en nosotros",
+      "Porque son obligatorios por ley",
+      "Porque los define la competencia",
+      "Porque cambian cada semana"
+    ],
+    correcta: "Porque construyen la confianza del cliente en nosotros",
+    explicacion: "Cuando cuidamos esos atributos de forma consistente, el cliente aprende a confiar en lo que va a recibir."
+  },
+
+  // ===== MAGIA CON UNA SONRISA =====
   {
     tipo: "opcion",
     categoria: "Magia con una Sonrisa",
@@ -773,7 +681,28 @@ const DATA = [
     correcta: "Brindar una experiencia excepcional al cliente",
     explicacion: "Es nuestra forma de nombrar el ir más allá: crear momentos memorables para el cliente, compre o no compre."
   },
+  {
+    tipo: "texto",
+    categoria: "Magia con una Sonrisa",
+    pregunta: "Completa: La magia empieza con una actitud ________.",
+    correcta: "positiva",
+    explicacion: "Todo momento memorable para el cliente empieza con la actitud positiva de quien lo atiende."
+  },
+  {
+    tipo: "opcion",
+    categoria: "Magia con una Sonrisa",
+    pregunta: "Un ejemplo de 'Magia con una Sonrisa' es:",
+    opciones: [
+      "Ayudar a un cliente a encontrar justo lo que necesita, con buena actitud",
+      "Ignorar preguntas del cliente",
+      "Apurar al cliente para que se vaya",
+      "Hablar solo si te preguntan"
+    ],
+    correcta: "Ayudar a un cliente a encontrar justo lo que necesita, con buena actitud",
+    explicacion: "Los pequeños gestos de atención genuina son los que el cliente recuerda y por los que vuelve."
+  },
 
+  // ===== SEGURIDAD =====
   {
     tipo: "opcion",
     categoria: "Seguridad",
@@ -785,33 +714,668 @@ const DATA = [
       "Ignorar los riesgos"
     ],
     correcta: "Verificar las condiciones de seguridad",
-    explicacion: "Revisar el entorno y las condiciones antes de actuar evita accidentes que luego son mucho más costosos que la pausa inicial."
+    explicacion: "Revisar el entorno antes de actuar evita accidentes que luego son mucho más costosos que la pausa inicial."
   },
-
   {
     tipo: "texto",
-    categoria: "Trabajo en Equipo",
-    pregunta: "Completa: El trabajo en ______ fortalece la organización.",
-    correcta: "equipo",
-    explicacion: "Ninguna meta importante se logra de forma aislada; el trabajo en equipo multiplica los resultados individuales."
+    categoria: "Seguridad",
+    pregunta: "Completa: La seguridad comienza por la __________.",
+    correcta: "prevención",
+    explicacion: "Anticipar riesgos antes de que ocurran es la base de cualquier cultura de seguridad efectiva."
   },
-
   {
     tipo: "opcion",
-    categoria: "Valores",
-    pregunta: "¿Cuál es un valor importante dentro de Skechers?",
+    categoria: "Seguridad",
+    pregunta: "Si detectas un riesgo en tu área de trabajo debes:",
     opciones: [
-      "Respeto",
-      "Desorden",
-      "Indiferencia",
-      "Competencia desleal"
+      "Reportarlo de inmediato",
+      "Ignorarlo si no es tu tarea",
+      "Esperar a que otro lo note",
+      "Resolverlo sin avisar a nadie"
     ],
-    correcta: "Respeto",
-    explicacion: "El respeto hacia compañeros, clientes y la marca es uno de los valores centrales que sostiene la cultura organizacional."
+    correcta: "Reportarlo de inmediato",
+    explicacion: "Reportar a tiempo permite corregir el riesgo antes de que afecte a alguien más."
   },
 
+  // ===== ATENCIÓN AL CLIENTE =====
+  {
+    tipo: "texto",
+    categoria: "Atención al Cliente",
+    pregunta: "Completa: La atención al ________ es responsabilidad de todos.",
+    correcta: "cliente",
+    explicacion: "La atención al cliente no es tarea de un solo departamento: todos representamos la marca frente a quien compra."
+  },
+  {
+    tipo: "opcion",
+    categoria: "Atención al Cliente",
+    pregunta: "Cuando un cliente presenta un problema debes:",
+    opciones: [
+      "Escuchar y buscar una solución",
+      "Ignorarlo",
+      "Discutir con él",
+      "Enviar a otra persona"
+    ],
+    correcta: "Escuchar y buscar una solución",
+    explicacion: "Escuchar primero y luego resolver es el camino correcto; evitar o discutir solo empeora la situación."
+  },
   {
     tipo: "texto",
     categoria: "Atención al Cliente",
     pregunta: "Completa: El cliente siempre merece un trato con ________.",
-    correcta:
+    correcta: "respeto",
+    explicacion: "Independientemente de la situación, el trato respetuoso hacia el cliente es innegociable."
+  },
+  {
+    tipo: "texto",
+    categoria: "Misión",
+    pregunta: "Completa: A diferencia de la visión, la misión se enfoca en el ______ y no en el futuro.",
+    correcta: "presente",
+    explicacion: "La misión describe el propósito actual de la empresa; la visión, en cambio, apunta a la meta futura."
+  },
+
+  // ===== VISIÓN =====
+  {
+    tipo: "texto",
+    categoria: "Visión",
+    pregunta: "Completa: Si la misión responde '¿quiénes somos?', la visión responde '¿hacia dónde ______?'",
+    correcta: "vamos",
+    explicacion: "La visión es la brújula: define el rumbo hacia el que se dirige toda la organización."
+  },
+
+  // ===== CULTURA ORGANIZACIONAL =====
+  {
+    tipo: "texto",
+    categoria: "Cultura Organizacional",
+    pregunta: "Completa: Cuando los valores declarados de la empresa chocan con las acciones reales del equipo, se genera una ________ de cultura.",
+    correcta: "brecha",
+    explicacion: "Una cultura sólida no es la que se declara en un documento, sino la que se vive; cuando no coinciden, aparece una brecha que erosiona la confianza."
+  },
+
+  // ===== COMPETENCIAS ESENCIALES =====
+  {
+    tipo: "texto",
+    categoria: "Competencias Esenciales",
+    pregunta: "Completa: Una persona con orientación a resultados prioriza el impacto de su trabajo sobre la simple ________.",
+    correcta: "actividad",
+    explicacion: "Estar ocupado no es lo mismo que ser efectivo: la orientación a resultados mide el impacto real, no solo cuánto se hizo."
+  },
+
+  // ===== ATRIBUTOS DE MARCA =====
+  {
+    tipo: "texto",
+    categoria: "Atributos de Marca",
+    pregunta: "Completa: Los atributos de marca pierden valor si no se mantienen ________ en cada punto de contacto con el cliente.",
+    correcta: "consistentes",
+    explicacion: "Un atributo solo construye confianza si el cliente lo percibe siempre igual, sin importar la tienda, el canal o la persona que lo atienda."
+  },
+
+  // ===== MAGIA CON UNA SONRISA =====
+  {
+    tipo: "texto",
+    categoria: "Magia con una Sonrisa",
+    pregunta: "Completa: 'Magia con una Sonrisa' no depende de si el cliente compra, sino de la ________ que le dejamos.",
+    correcta: "impresión",
+    explicacion: "El objetivo no es solo cerrar una venta, sino dejar una impresión positiva que el cliente recuerde y quiera repetir."
+  },
+
+  // ===== SEGURIDAD =====
+  {
+    tipo: "texto",
+    categoria: "Seguridad",
+    pregunta: "Completa: Reportar un incidente, aunque parezca menor, ayuda a prevenir accidentes ________.",
+    correcta: "mayores",
+    explicacion: "Los incidentes pequeños suelen ser señales de alerta; ignorarlos aumenta el riesgo de que ocurra algo más grave después."
+  },
+
+  // ===== ATENCIÓN AL CLIENTE =====
+  {
+    tipo: "texto",
+    categoria: "Atención al Cliente",
+    pregunta: "Completa: Resolver bien una queja puede convertir a un cliente insatisfecho en un cliente ________.",
+    correcta: "leal",
+    explicacion: "Un problema bien resuelto a veces genera más confianza que si nunca hubiera ocurrido, porque el cliente comprueba que sí lo respaldamos."
+  }
+
+];
+
+</script>
+<script>
+// ====== CONFIGURACIÓN ======
+const PREGUNTAS_POR_CATEGORIA = 2; // de las 3 disponibles por pilar
+const TIEMPO_POR_PREGUNTA = 25;    // segundos
+
+// ====== UTILIDADES ======
+function barajar(array) {
+  const copia = [...array];
+  for (let i = copia.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+  return copia;
+}
+
+function agruparPorCategoria(lista) {
+  const grupos = {};
+  lista.forEach(p => {
+    if (!grupos[p.categoria]) grupos[p.categoria] = [];
+    grupos[p.categoria].push(p);
+  });
+  return grupos;
+}
+
+// ====== SONIDO (beep simple, sin archivos externos) ======
+let audioCtx = null;
+let sonidoActivado = true;
+
+function sonar(frecuencia, duracionMs) {
+  if (!sonidoActivado) return;
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.frequency.value = frecuencia;
+    osc.type = "sine";
+    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duracionMs / 1000);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duracionMs / 1000);
+  } catch (err) { /* silencioso si el navegador bloquea audio */ }
+}
+
+// ====== ESTADO ======
+let jugador = { nombre: "", cm: "", puntaje: 0, preguntaActual: 0 };
+let preguntas = [];
+let categorias = {};
+let etapa = "responder";
+let racha = 0;
+let mejorRacha = 0;
+let inicioQuiz = 0;
+let timerPregunta = null;
+let segundosRestantesPregunta = TIEMPO_POR_PREGUNTA;
+
+// ====== ELEMENTOS ======
+const pantallaInicio = document.getElementById("inicio");
+const pantallaQuiz = document.getElementById("quiz");
+const pantallaFinal = document.getElementById("resultado");
+const pantallaRanking = document.getElementById("ranking");
+
+const nombreInput = document.getElementById("nombre");
+const cmInput = document.getElementById("cm");
+
+const contador = document.getElementById("contador");
+const categoriaActual = document.getElementById("categoriaActual");
+const rachaChip = document.getElementById("racha");
+const barra = document.getElementById("barra");
+const corredor = document.getElementById("corredor");
+const barraTiempo = document.getElementById("barraTiempo");
+const btnSonido = document.getElementById("btnSonido");
+
+const pregunta = document.getElementById("pregunta");
+const respuestas = document.getElementById("respuestas");
+
+const feedback = document.getElementById("feedback");
+const feedbackTitulo = document.getElementById("feedbackTitulo");
+const feedbackTexto = document.getElementById("feedbackTexto");
+
+const btnComenzar = document.getElementById("btnComenzar");
+const btnSiguiente = document.getElementById("btnSiguiente");
+
+const elPorcentaje = document.getElementById("porcentaje");
+const elMensaje = document.getElementById("mensaje");
+const elDetalle = document.getElementById("detalle");
+const elDesglose = document.getElementById("desglose");
+const elInsignias = document.getElementById("insignias");
+
+const btnCopiarResultado = document.getElementById("btnCopiarResultado");
+const btnVerRankingInicio = document.getElementById("btnVerRankingInicio");
+const btnVerRankingResultado = document.getElementById("btnVerRankingResultado");
+const btnVolverInicio = document.getElementById("btnVolverInicio");
+const listaRanking = document.getElementById("listaRanking");
+const buscarRanking = document.getElementById("buscarRanking");
+
+// ====== SONIDO TOGGLE ======
+btnSonido.onclick = () => {
+  sonidoActivado = !sonidoActivado;
+  btnSonido.textContent = sonidoActivado ? "🔊" : "🔇";
+  btnSonido.title = sonidoActivado ? "Silenciar sonido" : "Activar sonido";
+};
+
+// ====== INICIAR ======
+btnComenzar.onclick = () => {
+
+  if (nombreInput.value.trim() === "" || cmInput.value.trim() === "") {
+    alert("Debes ingresar Nombre y CM");
+    return;
+  }
+
+  jugador.nombre = nombreInput.value.trim();
+  jugador.cm = cmInput.value.trim();
+  jugador.puntaje = 0;
+  jugador.preguntaActual = 0;
+  racha = 0;
+  mejorRacha = 0;
+
+  const grupos = agruparPorCategoria(DATA);
+  let seleccion = [];
+  Object.values(grupos).forEach(lista => {
+    seleccion = seleccion.concat(barajar(lista).slice(0, PREGUNTAS_POR_CATEGORIA));
+  });
+  preguntas = barajar(seleccion);
+
+  categorias = {};
+  preguntas.forEach(p => {
+    if (!categorias[p.categoria]) categorias[p.categoria] = { correctas: 0, total: 0 };
+    categorias[p.categoria].total++;
+  });
+
+  construirCarril();
+
+  pantallaInicio.style.display = "none";
+  pantallaQuiz.style.display = "flex";
+
+  inicioQuiz = Date.now();
+  mostrarPregunta();
+};
+
+// ====== CARRIL DE PROGRESO ======
+function construirCarril() {
+  barra.innerHTML = "";
+  preguntas.forEach(() => {
+    const seg = document.createElement("div");
+    seg.className = "segmento";
+    barra.appendChild(seg);
+  });
+}
+
+function marcarSegmento(indice, clase) {
+  const segmentos = barra.querySelectorAll(".segmento");
+  segmentos.forEach(s => s.classList.remove("actual"));
+  if (segmentos[indice]) segmentos[indice].classList.add(clase);
+  corredor.style.left = ((indice + 1) / preguntas.length * 100) + "%";
+}
+
+// ====== TIMER POR PREGUNTA ======
+function iniciarTimerPregunta() {
+  clearInterval(timerPregunta);
+  segundosRestantesPregunta = TIEMPO_POR_PREGUNTA;
+  barraTiempo.style.width = "100%";
+  barraTiempo.classList.remove("urgente");
+
+  timerPregunta = setInterval(() => {
+    segundosRestantesPregunta--;
+    const pct = (segundosRestantesPregunta / TIEMPO_POR_PREGUNTA) * 100;
+    barraTiempo.style.width = Math.max(pct, 0) + "%";
+
+    if (segundosRestantesPregunta <= 8) barraTiempo.classList.add("urgente");
+
+    if (segundosRestantesPregunta <= 0) {
+      clearInterval(timerPregunta);
+      if (etapa === "responder") comprobarRespuesta(true); // true = se acabó el tiempo
+    }
+  }, 1000);
+}
+
+// ====== MOSTRAR PREGUNTA ======
+function mostrarPregunta() {
+
+  if (jugador.preguntaActual >= preguntas.length) {
+    terminar();
+    return;
+  }
+
+  etapa = "responder";
+  feedback.style.display = "none";
+  feedback.classList.remove("ok", "mal");
+  btnSiguiente.textContent = "Comprobar respuesta";
+
+  const p = preguntas[jugador.preguntaActual];
+
+  contador.innerHTML = String(jugador.preguntaActual + 1).padStart(2, "0") +
+    `<span class="dorsal-total">/${preguntas.length}</span>`;
+  categoriaActual.textContent = p.categoria;
+
+  marcarSegmento(jugador.preguntaActual, "actual");
+
+  pregunta.textContent = p.pregunta;
+  respuestas.innerHTML = "";
+
+  if (p.tipo === "texto") {
+    respuestas.innerHTML = `<input id="respuestaTexto" placeholder="Escribe tu respuesta">`;
+    setTimeout(() => document.getElementById("respuestaTexto")?.focus(), 100);
+  } else {
+    const opciones = barajar(p.opciones);
+    opciones.forEach((op, i) => {
+      const btn = document.createElement("button");
+      btn.className = "opcion";
+      btn.dataset.texto = op;
+      btn.innerHTML = `<span class="tecla">${i + 1}</span><span>${op}</span>`;
+      btn.onclick = () => {
+        if (etapa !== "responder") return;
+        document.querySelectorAll(".opcion").forEach(b => b.classList.remove("seleccion"));
+        btn.classList.add("seleccion");
+      };
+      respuestas.appendChild(btn);
+    });
+  }
+
+  iniciarTimerPregunta();
+}
+
+// ====== ATAJOS DE TECLADO ======
+document.addEventListener("keydown", (e) => {
+  if (pantallaQuiz.style.display === "none") return;
+
+  if (etapa === "responder" && ["1", "2", "3", "4"].includes(e.key)) {
+    const opciones = document.querySelectorAll(".opcion");
+    const idx = parseInt(e.key) - 1;
+    if (opciones[idx] && !opciones[idx].disabled) opciones[idx].click();
+  }
+
+  if (e.key === "Enter") {
+    e.preventDefault();
+    btnSiguiente.click();
+  }
+});
+
+// ====== BOTÓN SIGUIENTE / COMPROBAR ======
+btnSiguiente.onclick = () => {
+  if (etapa === "responder") {
+    comprobarRespuesta(false);
+  } else {
+    jugador.preguntaActual++;
+    mostrarPregunta();
+  }
+};
+
+function comprobarRespuesta(seAcaboElTiempo) {
+
+  clearInterval(timerPregunta);
+
+  const p = preguntas[jugador.preguntaActual];
+  let esCorrecta = false;
+
+  if (seAcaboElTiempo) {
+    esCorrecta = false;
+    if (p.tipo === "texto") {
+      const input = document.getElementById("respuestaTexto");
+      if (input) input.disabled = true;
+    } else {
+      document.querySelectorAll(".opcion").forEach(btn => {
+        btn.disabled = true;
+        if (btn.dataset.texto === p.correcta) btn.classList.add("correcta");
+      });
+    }
+  } else if (p.tipo === "texto") {
+    const input = document.getElementById("respuestaTexto");
+    const r = input.value.trim().toLowerCase();
+
+    if (r === "") { alert("Escribe una respuesta."); return; }
+
+    esCorrecta = r === p.correcta.toLowerCase();
+    input.disabled = true;
+  } else {
+    const seleccion = document.querySelector(".opcion.seleccion");
+    if (!seleccion) { alert("Selecciona una respuesta."); return; }
+
+    esCorrecta = seleccion.dataset.texto === p.correcta;
+
+    document.querySelectorAll(".opcion").forEach(btn => {
+      btn.disabled = true;
+      if (btn.dataset.texto === p.correcta) btn.classList.add("correcta");
+      else if (btn.classList.contains("seleccion")) btn.classList.add("incorrecta");
+    });
+  }
+
+  if (esCorrecta) {
+    jugador.puntaje++;
+    categorias[p.categoria].correctas++;
+    racha++;
+    mejorRacha = Math.max(mejorRacha, racha);
+    marcarSegmento(jugador.preguntaActual, "correcta");
+    sonar(880, 150);
+  } else {
+    racha = 0;
+    marcarSegmento(jugador.preguntaActual, "incorrecta");
+    sonar(220, 250);
+  }
+
+  if (racha >= 2) {
+    rachaChip.style.display = "inline-block";
+    rachaChip.textContent = `🔥 x${racha}`;
+  } else {
+    rachaChip.style.display = "none";
+  }
+
+  feedback.style.display = "block";
+  feedback.classList.add(esCorrecta ? "ok" : "mal");
+
+  if (seAcaboElTiempo) {
+    feedbackTitulo.textContent = "⏱️ Se acabó el tiempo";
+    feedbackTexto.textContent = `La respuesta correcta era: "${p.correcta}". ${p.explicacion}`;
+  } else {
+    feedbackTitulo.textContent = esCorrecta ? "✅ ¡Correcto!" : "❌ No es correcto";
+    feedbackTexto.textContent = esCorrecta
+      ? p.explicacion
+      : `La respuesta correcta era: "${p.correcta}". ${p.explicacion}`;
+  }
+
+  etapa = "avanzar";
+  btnSiguiente.textContent =
+    (jugador.preguntaActual === preguntas.length - 1) ? "Ver resultados →" : "Siguiente pregunta →";
+}
+
+// ====== RANKING (Google Sheets vía Apps Script) ======
+const URL_RANKING = "https://script.google.com/macros/s/AKfycbx1VbIvuM04Innq9bjikqa4uYl6GU3dn2GwbK5ThdxYyBX5mkl6Jz2Xl312GLzg6le0/exec";
+
+function enviarResultado(datos) {
+  if (!URL_RANKING || URL_RANKING.includes("PEGA_AQUI")) {
+    console.warn("URL_RANKING no configurada: el resultado no se envió al ranking.");
+    return;
+  }
+  fetch(URL_RANKING, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(datos)
+  }).catch(() => {
+    console.warn("No se pudo enviar el resultado al ranking.");
+  });
+}
+
+// ====== INSIGNIAS ======
+function calcularInsignias(porcentaje, tiempoUsadoSeg) {
+  const lista = [];
+
+  Object.entries(categorias).forEach(([nombre, datos]) => {
+    if (datos.total > 0 && datos.correctas === datos.total) {
+      lista.push(`🎯 Domina: ${nombre}`);
+    }
+  });
+
+  if (porcentaje === 100) lista.push("👑 Puntaje perfecto");
+  if (mejorRacha >= 5) lista.push("🔥 Racha imparable");
+  if (porcentaje >= 90 && tiempoUsadoSeg <= preguntas.length * 12) lista.push("⚡ Rápido y certero");
+
+  return lista;
+}
+
+// ====== FINAL ======
+function terminar() {
+
+  clearInterval(timerPregunta);
+
+  pantallaQuiz.style.display = "none";
+  pantallaFinal.style.display = "flex";
+
+  const porcentaje = Math.round((jugador.puntaje / preguntas.length) * 100);
+  const tiempoUsadoSeg = Math.round((Date.now() - inicioQuiz) / 1000);
+  const min = Math.floor(tiempoUsadoSeg / 60);
+  const seg = tiempoUsadoSeg % 60;
+
+  let mensaje = "";
+  if (porcentaje >= 90) mensaje = "🏆 Excelente. Dominas la cultura Skechers.";
+  else if (porcentaje >= 70) mensaje = "👏 Muy buen trabajo.";
+  else if (porcentaje >= 50) mensaje = "🙂 Vas bien, pero puedes reforzar algunos temas.";
+  else mensaje = "📚 Te recomendamos repasar la Cultura Organizacional.";
+
+  elPorcentaje.textContent = porcentaje + "%";
+  elMensaje.textContent = mensaje;
+  elDetalle.textContent =
+    `${jugador.nombre} (CM: ${jugador.cm}) — ${jugador.puntaje} de ${preguntas.length} correctas · ${min}:${String(seg).padStart(2, "0")} · racha máx. x${mejorRacha}`;
+
+  renderDesglose();
+
+  const insignias = calcularInsignias(porcentaje, tiempoUsadoSeg);
+  elInsignias.innerHTML = insignias.map(i => `<span class="insignia">${i}</span>`).join("");
+
+  const categoriasPct = {};
+  Object.entries(categorias).forEach(([nombre, datos]) => {
+    categoriasPct[nombre] = Math.round((datos.correctas / datos.total) * 100);
+  });
+
+  enviarResultado({
+    nombre: jugador.nombre,
+    cm: jugador.cm,
+    puntaje: jugador.puntaje,
+    total: preguntas.length,
+    porcentaje: porcentaje,
+    categorias: categoriasPct
+  });
+
+  if (porcentaje >= 90 && typeof confetti === "function") {
+    confetti({ particleCount: 140, spread: 90, origin: { y: 0.6 } });
+  }
+}
+
+function renderDesglose(contenedor = elDesglose, datosCategorias = categorias) {
+  contenedor.innerHTML = "";
+  Object.entries(datosCategorias).forEach(([nombre, datos]) => {
+    const pct = typeof datos === "number" ? datos : Math.round((datos.correctas / datos.total) * 100);
+    const fila = document.createElement("div");
+    fila.className = "fila-desglose";
+    fila.innerHTML = `
+      <span class="nombreCat">${nombre}</span>
+      <span class="track"><span class="relleno" style="width:${pct}%"></span></span>
+      <span class="valorCat">${pct}%</span>
+    `;
+    contenedor.appendChild(fila);
+  });
+}
+
+// ====== COPIAR RESULTADO ======
+btnCopiarResultado.onclick = async () => {
+  const porcentaje = elPorcentaje.textContent;
+  const texto = `🏆 Evaluación Cultura Organizacional — SKECHERS\n${jugador.nombre} (${jugador.cm})\nResultado: ${porcentaje} (${jugador.puntaje}/${preguntas.length})\nRacha máxima: x${mejorRacha}`;
+
+  try {
+    await navigator.clipboard.writeText(texto);
+    const original = btnCopiarResultado.textContent;
+    btnCopiarResultado.textContent = "✅ ¡Copiado!";
+    setTimeout(() => { btnCopiarResultado.textContent = original; }, 2000);
+  } catch {
+    alert("No se pudo copiar automáticamente. Resultado:\n\n" + texto);
+  }
+};
+
+// ====== NAVEGACIÓN AL RANKING ======
+let datosRankingCache = [];
+
+btnVerRankingInicio.onclick = () => mostrarRanking();
+btnVerRankingResultado.onclick = () => mostrarRanking();
+
+btnVolverInicio.onclick = () => {
+  pantallaRanking.style.display = "none";
+  pantallaInicio.style.display = "flex";
+};
+
+async function mostrarRanking() {
+  pantallaInicio.style.display = "none";
+  pantallaQuiz.style.display = "none";
+  pantallaFinal.style.display = "none";
+  pantallaRanking.style.display = "flex";
+
+  buscarRanking.value = "";
+  listaRanking.innerHTML = `<p class="cargandoRanking">Cargando...</p>`;
+
+  if (!URL_RANKING || URL_RANKING.includes("PEGA_AQUI")) {
+    listaRanking.innerHTML = `<p class="cargandoRanking">Falta configurar URL_RANKING con la URL de tu Apps Script.</p>`;
+    return;
+  }
+
+  try {
+    const respuesta = await fetch(URL_RANKING);
+    const datos = await respuesta.json();
+    datosRankingCache = datos;
+    pintarRanking(datos);
+  } catch (err) {
+    listaRanking.innerHTML = `<p class="cargandoRanking">No se pudo cargar el ranking. Intenta de nuevo más tarde.</p>`;
+  }
+}
+
+function pintarRanking(datos) {
+  if (!datos || datos.length === 0) {
+    listaRanking.innerHTML = `<p class="cargandoRanking">Todavía no hay evaluaciones registradas.</p>`;
+    return;
+  }
+
+  const ordenado = [...datos].sort((a, b) => b.porcentaje - a.porcentaje);
+
+  listaRanking.innerHTML = "";
+
+  ordenado.forEach((entrada, i) => {
+    const posicion = i + 1;
+    const medalla = posicion === 1 ? "🥇" : posicion === 2 ? "🥈" : posicion === 3 ? "🥉" : posicion;
+    const claseTop = posicion === 1 ? "top1" : posicion === 2 ? "top2" : posicion === 3 ? "top3" : "";
+
+    let fechaTexto = "";
+    try {
+      const f = new Date(entrada.fecha);
+      fechaTexto = f.toLocaleDateString("es", { day: "2-digit", month: "short", year: "numeric" }) +
+        " · " + f.toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit" });
+    } catch { fechaTexto = entrada.fecha || ""; }
+
+    const fila = document.createElement("div");
+    fila.className = `filaRanking ${claseTop}`;
+    fila.innerHTML = `
+      <div class="filaRankingResumen">
+        <span class="posicion">${medalla}</span>
+        <div class="infoRanking">
+          <div class="nombreRanking">${entrada.nombre || "(sin nombre)"}</div>
+          <div class="cmRanking">${entrada.cm || ""}</div>
+        </div>
+        <span class="pctRanking">${entrada.porcentaje}%</span>
+        <span class="flechaRanking">▼</span>
+      </div>
+      <div class="detalleRanking">
+        <div class="fechaRanking">📅 ${fechaTexto} · Puntaje: ${entrada.puntaje || ""}</div>
+        <div class="detalleCategoriasRanking"></div>
+      </div>
+    `;
+
+    const resumen = fila.querySelector(".filaRankingResumen");
+    resumen.onclick = () => fila.classList.toggle("abierta");
+
+    if (entrada.categorias) {
+      const contenedorCat = fila.querySelector(".detalleCategoriasRanking");
+      renderDesglose(contenedorCat, entrada.categorias);
+    }
+
+    listaRanking.appendChild(fila);
+  });
+}
+
+buscarRanking.addEventListener("input", () => {
+  const termino = buscarRanking.value.trim().toLowerCase();
+  if (termino === "") { pintarRanking(datosRankingCache); return; }
+
+  const filtrado = datosRankingCache.filter(e =>
+    (e.nombre || "").toLowerCase().includes(termino) ||
+    (String(e.cm) || "").toLowerCase().includes(termino)
+  );
+  pintarRanking(filtrado);
+});
+
+</script>
+</body>
+</html>
